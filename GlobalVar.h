@@ -24,6 +24,7 @@ Servo servoLF;
 Servo servoRF;
 Servo servoLB;
 Servo servoRB;
+Servo servoFront;
 // alloc mem for sensor value 
 int* sensorVal = (int*)malloc(5 * sizeof(int));
 // for red value

@@ -3,11 +3,13 @@
 #ifndef ROUTETHREE_H
 #define ROUTETHREE_H
 
-void routeThree()
+void routeFour()
 {
+	turnMotorOn();
+	servoFront.write(70);
 	while(1)
 	{
-		forwardRunAtSpeed(0);
+		detectDirection(getSensorVal(sensorVal), getRedVal(redVal));
 	}
 }
 

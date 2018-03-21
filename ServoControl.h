@@ -24,13 +24,13 @@ void leftRunAtSpeed (int speed, int dir)
 void rightRunAtSpeed (int speed, int dir) 
 {
     
-    int offset = 0;
+    int offset = 69;
     if (dir == FORWARD) 
     {
         speed = 180 - speed;
     }
-    servoRF.write(speed);
-    servoRB.write(speed);
+    servoRF.write(speed - offset);
+    servoRB.write(speed - offset);
 }
 
 /*
@@ -45,7 +45,7 @@ void forwardRunAtSpeed (int speed)
 
 void forwardRunAtSpeedWithTime (int speed, int sec) 
 { 
-    turnMotorOn();
+    // turnMotorOn();
     for(int i = 0; i<sec; i++)
     {
         leftRunAtSpeed(speed, FORWARD);
@@ -90,14 +90,31 @@ void turnLeftWithTime(int sec)
 void tuneToLeft()
 {
     rightRunAtSpeed(0, FORWARD);
-    leftRunAtSpeed(75, FORWARD);
+    leftRunAtSpeed(90, FORWARD);
+}
+
+void tuneToLeftWithTime(int sec)
+{
+    for(int i=0; i<sec; i++)
+    {
+        tuneToLeft();
+    }
 }
 
 void tuneToRight()
 {
-    rightRunAtSpeed(70, FORWARD);
+    rightRunAtSpeed(90, FORWARD);
     leftRunAtSpeed(0, FORWARD);
 }
+
+void tuneToRightWithTime(int sec)
+{
+    for(int i=0; i<sec; i++)
+    {
+        tuneToRight();
+    }
+}
+
 
 void onlyUseRight()
 {

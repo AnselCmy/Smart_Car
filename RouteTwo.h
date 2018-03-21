@@ -5,6 +5,17 @@
 #ifndef ROUTETWO_H
 #define ROUTETWO_H
 
+void routeTwo() 
+{
+	turnMotorOn();
+    servoFront.write(70);
+	while(1)
+	{
+		detectDirection(getSensorVal(sensorVal), getRedVal(redVal));
+	}
+}
+
+#if 0
 void routeTwo()
 {
 	forwardRunAtSpeedWithTime(0, 10000);
@@ -33,5 +44,6 @@ void routeTwo()
 		detectDirection(getSensorVal(sensorVal), getRedVal(redVal));
 	}
 }
+#endif
 
 #endif

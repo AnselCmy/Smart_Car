@@ -41,7 +41,7 @@ int ifTuneLeftOnBridge(int* sensorVal)
 
 int detectDirection(int* sensorVal, int* redVal, int isHighBridge = 0, int useOuterSensor = 0) 
 {
-    turnMotorOn();
+    // turnMotorOn();
     int lDiffll = sensorVal[sensorFL] - sensorVal[sensorFLL];
     int rDiffrr = sensorVal[sensorFR] - sensorVal[sensorFRR];
     int lrDiff = sensorVal[sensorFL] - sensorVal[sensorFR];
@@ -82,30 +82,30 @@ int detectDirection(int* sensorVal, int* redVal, int isHighBridge = 0, int useOu
     if(!useOuterSensor)
     // if(!doHighBridgeTune && !useOuterSensor)
     {
-        if(lrDiff > 80) 
+        if(lrDiff > 50) 
         {
             // 右转
             if(lrDiff > 120)
             {
-                turnRightWithTime(500);
+                turnRightWithTime(100);
             }
             // 向右微调
             else 
             {
-                tuneToRight();
+                tuneToRightWithTime(100);
             }
         }
-        else if(lrDiff < -80)
+        else if(lrDiff < -50)
         {
             // 左转
             if(lrDiff < -120)
             {
-                turnLeftWithTime(500);
+                turnLeftWithTime(100);
             }
             // 向左微调
             else 
             {
-                tuneToLeft();
+                tuneToLeftWithTime(100);
             }
         }
         else 
@@ -113,7 +113,7 @@ int detectDirection(int* sensorVal, int* redVal, int isHighBridge = 0, int useOu
             forwardRunAtSpeed(0);
         }
     }
-   // printf("%d, %d, %d, %d, %d\n", sensorVal[sensorFLL], sensorVal[sensorFL], sensorVal[sensorFC], sensorVal[sensorFR], sensorVal[sensorFRR]);
+   printf("%d, %d, %d, %d, %d\n", sensorVal[sensorFLL], sensorVal[sensorFL], sensorVal[sensorFC], sensorVal[sensorFR], sensorVal[sensorFRR]);
    // printf("%d， %d\n", redVal[redL], redVal[redR]);
    // printf("----------------------------------------------------\n");
     return 0;
