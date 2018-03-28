@@ -8,7 +8,13 @@
 void turnRight90()
 {
     // turnRightWithTime(7200);
-    turnRightWithTime(7000);
+    // turnRightWithTime(7000);
+    // tuneToRightWithTime(7000);
+    for(int i=0; i<12000; i++)
+    {
+      rightRunAtSpeed(90, BACKWARD);
+      leftRunAtSpeed(0, FORWARD);
+    }
 }
 
 void turnRight180()
@@ -76,34 +82,78 @@ int ifHighBidgeStart()
     return 0;
 }
 
+// void routeOne()
+// {
+//     // step1 开始->栅格->卡住
+//     turnMotorOn();                        // 关电机
+//     servoFront.write(60);                   // 把前面调成60度    
+//     forwardRunAtSpeedWithTime(0, 15000);    // 在栅格前面一段不循迹 
+//     detectDirectionWithTime(0, 550);        // 过栅格
+//     servoFront.write(180);                  // 把前面调成180度  
+//     turnMotorOn(1);
+//     detectDirectionWithTime(0, 150);        // 开始循迹直到卡在窄桥上
+//     stopRun();                              // 舵机停止
+//     // step2 卡住结束->上窄桥->右转
+//     turnMotorOn();                          // 开电机
+//     servoFront.write(60);                   // 把前面调回60度    
+//     detectDirectionWithTime(0, 350);        // 开始循迹上坡
+//     stopRun();                              // 停止
+//     turnMotorDown();                        // 关电机
+//     turnRight90();                          // 右转90度
+//     stopRun();                              // 停止
+//     // step3 上高台
+//     turnMotorOn();                          // 开电机
+//     forwardRunAtSpeedWithTime(0, 30000);    // 上高台
+//     turnMotorDown();                        
+//     stopRun();
+//     // // step4 转回180->下高台
+//     // turnRight180();
+//     // forwardRunAtSpeedWithTime(0, 30000);
+//     // stopRun();
+
+//     while(1){
+//         // servoFront.write(180);
+//         // detectDirection(getSensorVal(sensorVal), getRedVal(redVal), 1);
+//     }
+//     // detectDirection(getSensorVal(sensorVal), getRedVal(redVal), 1);
+//     // detectDirectionWithTime(0, 10000);
+// }
+
+
+
 void routeOne()
 {
     // step1 开始->栅格->卡住
+    turnMotorOn();                        // 关电机
+    servoFront.write(60);                   // 把前面调成60度    
+    forwardRunAtSpeedWithTime(0, 15000);    // 在栅格前面一段不循迹 
+    turnLightOn();
+    detectDirectionWithTime(0, 3000);        // 过栅格
+    detectDirectionWithTime(0, 1000);        // 过栅格
+    servoFront.write(180);                  // 把前面调成180度  
     turnMotorDown();
-    servoFront.write(60);
-    printf("%d\n", servoFront.read());
-    forwardRunAtSpeedWithTime(0, 15000);
-    detectDirectionWithTime(0, 550);
-    servoFront.write(180);
-    detectDirectionWithTime(0, 350);
-    stopRun();
+    for(int i=0; i<2800; i++)
+    {
+        detectDirectionWithoutMotor2(getSensorVal(sensorVal), getRedVal(redVal));
+    }
+    stopRun();                              // 舵机停止
     // step2 卡住结束->上窄桥->右转
-    turnMotorOn();
-    servoFront.write(60);
-    detectDirectionWithTime(0, 300);
-    stopRun();
-    turnMotorDown();
-    turnRight90();
-    stopRun();
+    turnMotorOn();                          // 开电机
+    servoFront.write(60);                   // 把前面调回60度    
+    forwardRunAtSpeedWithTime(0, 22000);
+    stopRun();                              // 停止
+    turnMotorDown();                        // 关电机
+    turnRight90();                          // 右转90度
+    stopRun();                              // 停止
     // step3 上高台
-    turnMotorOn();
-    forwardRunAtSpeedWithTime(0, 30000);
-    turnMotorDown();
+    turnMotorOn();                          // 开电机
+    forwardRunAtSpeedWithTime(0, 25000);    // 上高台
+    turnMotorDown();                        
     stopRun();
-    // step4 转回180->下高台
-    turnRight180();
-    forwardRunAtSpeedWithTime(0, 30000);
-    stopRun();
+    // // step4 转回180->下高台
+    // turnRight180();
+    // forwardRunAtSpeedWithTime(0, 30000);
+    // stopRun();
 
     while(1){
         // servoFront.write(180);

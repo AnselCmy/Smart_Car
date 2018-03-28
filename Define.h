@@ -36,7 +36,7 @@
 #define pin_light 13 
 // pin for switch
 #define pin_switch  2
-#define pin_switch2 9
+#define pin_switch2 3
 // define ultra
 #define pin_trig0 3
 #define pin_echo0 4

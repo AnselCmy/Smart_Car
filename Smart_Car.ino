@@ -24,6 +24,7 @@ void setup()
     // pin mode
     pinMode(pin_light, OUTPUT);
     pinMode(pin_switch, INPUT);
+    pinMode(pin_switch2, INPUT);
     pinMode(pin_motor1, OUTPUT);
     pinMode(pin_motor2, OUTPUT);
     // set up serial printf
@@ -38,20 +39,21 @@ void setup()
     // turn on motor
     turnMotorOn();
     // ultra
-    pinMode(pin_trig0, OUTPUT);
-    pinMode(pin_echo0, INPUT);
+//    pinMode(pin_trig0, OUTPUT);
+//    pinMode(pin_echo0, INPUT);
     // pinMode(pin_trig1, OUTPUT);
     // pinMode(pin_echo1, INPUT);
 }
 
-void loop() 
+void loop()
 {    
 //     servoFront.write(0); 
 //     detectDirection(getSensorVal(sensorVal), getRedVal(redVal));
 //     routeOne();
 //    routeTwo();
 //    routeThree();
-    routeFour();
+//    routeFour();
+ 
   
 //     printf("%d\t%d\n", digitalRead(pin_switch), digitalRead(pin_switch2));
     
@@ -59,12 +61,27 @@ void loop()
     // turnLightOn();
 
     // printf("%d\n", getUltraVal(pin_trig0, pin_echo0));
-    
-//    forwardRunAtSpeed(0); 
+//    servoFront.write(0);
+//    forwardRunAtSpeed(0);
+//    turnMotorDown();
+//    for(int i=0; i<3000; i++) 
+//    {
+//      detectDirection(getSensorVal(sensorVal), getRedVal(redVal));
+//    }
+//    for(int i=0; i<3000; i++) 
+//    {
+//      detectDirection(getSensorVal(sensorVal), getRedVal(redVal));
+//    }
+//    stopRun();
+//    while(1){};
 
 //    int pos = 0;
-
-
+//turnMotorDown();
+//servoFront.write(0);
+//while(1)
+//{
+//  detectDirectionWithoutMotor(getSensorVal(sensorVal), getRedVal(redVal));
+//}
 //      servoFront.write(180);
 //      servoFront.write(0);
 //      detectDirection(getSensorVal(sensorVal), getRedVal(redVal), 0);
@@ -84,51 +101,57 @@ void loop()
 //        delay(50);                        // 等待15ms让舵机到达指定位置
 //    }
 
-//    if(digitalRead(pin_switch) == 0)
-//    {
-//        turnLightDown();
-//        routeOne();
-//    }
-//    else if(digitalRead(pin_switch2) == 0)
-//    {
-//        delay(1000);
-//        if(digitalRead(pin_switch) == 0)
-//        {
-//            turnLightDown();
-//            delay(200);
-//            turnLightOn();
-//            delay(200);
-//            turnLightDown();
-//            delay(200);
-//            turnLightOn();
-//            delay(200);
-//            turnLightDown();
-//            delay(200);
-//            turnLightOn();
-//            delay(200);
-//            turnLightDown();
-//            routeThree();
-//        }
-//        else 
-//        {
-//            turnLightDown();
-//            delay(200);
-//            turnLightOn();
-//            delay(200);
-//            turnLightDown();
-//            delay(200);
-//            turnLightOn();
-//            delay(200);
-//            turnLightDown();
-//            routeTwo();
-//        }
-//    }
-//    // only detect direction
-//    else 
-//    {
-//        turnLightOn();
-//        detectDirection(getSensorVal(sensorVal), getRedVal(redVal), 1);
-//    }
+    turnLightDown();
+    if(digitalRead(pin_switch) == 0)
+    {
+        delay(1000);
+        if(digitalRead(pin_switch2) == 1)
+        {
+            delay(200);
+            turnLightOn();
+            delay(200);
+            turnLightDown(); 
+            routeOne();
+        }
+        else
+        {
+            delay(200);
+            for(int i=0; i<2; i++)
+            {
+                turnLightOn();
+                delay(200);
+                turnLightDown(); 
+                delay(200);
+            }
+            routeTwo();
+        }
+    }
+    else if(digitalRead(pin_switch2) == 0)
+    {
+        delay(1000);
+        if(digitalRead(pin_switch) == 1)
+        {
+            for(int i=0; i<3; i++)
+            {
+                turnLightOn();
+                delay(200);
+                turnLightDown(); 
+                delay(200);
+            }
+            routeThree();
+        }
+        else
+        {
+            for(int i=0; i<4; i++)
+            {
+                turnLightOn();
+                delay(200);
+                turnLightDown(); 
+                delay(200);
+            }
+            routeFour();
+        }
+    }
 }
 
 

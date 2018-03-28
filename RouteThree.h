@@ -3,18 +3,18 @@
 #ifndef ROUTETHREE_H
 #define ROUTETHREE_H
 
-void routeFour()
+void routeThree()
 {
 	turnMotorOn();
 	for(int i=0; i<5; i++) 
 	{
-	   for(pos = 0; pos < 180; pos+=10)  
+	   for(int pos = 0; pos < 180; pos+=10)  
 	   {                                   
 	       servoFront.write(pos);        
 	       delay(50);                 
 	   }
 	   forwardRunAtSpeedWithTime(0, 5000);
-	   for(pos = 180; pos>=1; pos-=10) 
+	   for(int pos = 180; pos>=1; pos-=10) 
 	   {                                
 	       servoFront.write(pos);        
 	       delay(50);                 
