@@ -47,26 +47,6 @@ int* getRedVal(int* redVal)
     return redVal;
 }
 
-// int getUltraVal()
-// {
-//     int repeat = 3;
-//     int i = 0;
-//     long duration, cm = 0;
-//     for(i = 0; i < repeat; i++)
-//     {
-//         digitalWrite(pin_trig, LOW);
-//         delayMicroseconds(5);
-//         digitalWrite(pin_trig, HIGH);   
-//         delayMicroseconds(10);
-//         digitalWrite(pin_trig, LOW);
-    
-//         duration = pulseIn(pin_echo, HIGH);
-//         cm += duration / 29 / 2;
-//     }
-//     cm /= repeat;
-//     return cm;
-// }
-
 int getUltraVal(int trig, int echo)
 {
     // int repeat = 3;
@@ -87,7 +67,5 @@ int getUltraVal(int trig, int echo)
     // return cm;
     return 0;
 }
-
-
 
 #endif

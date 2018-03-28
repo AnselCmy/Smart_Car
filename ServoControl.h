@@ -10,7 +10,6 @@
  * speed: 0~89, 0 at the fastest speed
  * dir  : FOREARD or BACKWARD
  */
-
 void lfRunAtSpeed(int speed, int dir)
 {
    int offset = 0;
@@ -34,7 +33,6 @@ void lbRunAtSpeed(int speed, int dir)
 void rfRunAtSpeed (int speed, int dir) 
 {
     
-    // int offset = 69;
     int offset = 0;
     if (dir == FORWARD) 
     {
@@ -46,7 +44,6 @@ void rfRunAtSpeed (int speed, int dir)
 void rbRunAtSpeed (int speed, int dir) 
 {
     
-    // int offset = 69;
     int offset = 0;
     if (dir == FORWARD) 
     {
@@ -100,42 +97,21 @@ void forwardRunAtSpeedWithTime (int speed, int sec)
 
 /*
  * Turn
+ * 在转弯turn的时候，一边正转，一边反转，差速转弯
+ * 在turnWithTime里面的turnMotorDown()是为了在转弯防止太快
+ *  相应的在DetectDirection()里面的直走情况里打开了motor
  */
 void turnRight() 
 {
-    // turnMotorDown();
     leftRunAtSpeed(0, FORWARD);
     rightRunAtSpeed(0, BACKWARD);
-    // turnMotorOn();
 }
 
 void turnLeft() 
 {
-    // turnMotorDown();
     leftRunAtSpeed(0, BACKWARD);
     rightRunAtSpeed(0, FORWARD);
-    // turnMotorOn();
 }
-
-// void turnRight() 
-// {
-//     turnMotorDown();
-//     lbRunAtSpeed(80, FORWARD);
-//     lfRunAtSpeed(0, FORWARD);
-//     rbRunAtSpeed(80, BACKWARD);
-//     rfRunAtSpeed(0, BACKWARD);
-//     // turnMotorOn();
-// }
-
-// void turnLeft() 
-// {
-//     turnMotorDown();
-//     lbRunAtSpeed(80, BACKWARD);
-//     lfRunAtSpeed(0, BACKWARD);
-//     rbRunAtSpeed(80, FORWARD);
-//     rfRunAtSpeed(0, FORWARD);
-//     // turnMotorOn();
-// }
 
 void turnRightWithTime(int sec)
 {
@@ -144,7 +120,6 @@ void turnRightWithTime(int sec)
     {
         turnRight();
     }
-    // turnMotorOn();
 }
 
 void turnLeftWithTime(int sec)
@@ -154,17 +129,16 @@ void turnLeftWithTime(int sec)
     {
         turnLeft();
     }
-    // turnMotorOn();
 }
 
 /*
  * Tune
+ * 在微调tune的时候使用，一边正常运行，另一边停止（速度为0）
  */
 void tuneToLeft()
 {
     rightRunAtSpeed(0, FORWARD);
     leftRunAtSpeed(90, FORWARD);
-    // leftRunAtSpeed(80, FORWARD);
 }
 
 void tuneToLeftWithTime(int sec)
@@ -177,7 +151,6 @@ void tuneToLeftWithTime(int sec)
 
 void tuneToRight()
 {
-    // rightRunAtSpeed(80, FORWARD);
     rightRunAtSpeed(90, FORWARD);
     leftRunAtSpeed(0, FORWARD);
 }
@@ -190,13 +163,15 @@ void tuneToRightWithTime(int sec)
     }
 }
 
-//------2--------
+/*
+ * Tune2
+ * 在微调tune的时候使用，一边正常运行，另一边减慢速度
+ */
 
 void tuneToLeft2()
 {
     rightRunAtSpeed(0, FORWARD);
     leftRunAtSpeed(80, FORWARD);
-    // leftRunAtSpeed(80, FORWARD);
 }
 
 void tuneToLeftWithTime2(int sec)
@@ -209,7 +184,6 @@ void tuneToLeftWithTime2(int sec)
 
 void tuneToRight2()
 {
-    // rightRunAtSpeed(80, FORWARD);
     rightRunAtSpeed(80, FORWARD);
     leftRunAtSpeed(0, FORWARD);
 }
@@ -220,21 +194,6 @@ void tuneToRightWithTime2(int sec)
     {
         tuneToRight2();
     }
-}
-
-
-void onlyUseRight()
-{
-    rightRunAtSpeed(0, FORWARD);
-    servoLF.write(base_servoLF);
-    servoLB.write(base_servoLB);
-}
-
-void onlyUseLeft()
-{
-    leftRunAtSpeed(0, FORWARD);
-    servoRF.write(base_servoRF);
-    servoRB.write(base_servoLB);
 }
 
 /*

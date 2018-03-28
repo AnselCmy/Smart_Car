@@ -14,8 +14,6 @@ void turnMotorOn(int reverse = 0)
     {
         digitalWrite(pin_motor2, HIGH);
         digitalWrite(pin_motor1, LOW);
-        // digitalWrite(9, HIGH);
-        // digitalWrite(10, LOW);
     }
 }
 
